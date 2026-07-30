@@ -1,0 +1,228 @@
+* {
+  margin: 0;
+  padding: 0;
+  
+}
+
+body {
+  background-color: #DAF1DE !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 500;
+}
+
+p {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+}
+
+.landing-banner {
+  background-image: url('../src/assets/landingPage-banner.png');
+  background-size: cover;
+  background-position: bottom center;
+  position: relative;
+  height: 265vh;
+}
+
+.home-banner {
+  background-image: url('../src//assets/homePage-banner.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  height: 109vh;
+}
+
+.c {
+  background-image: url('https://static.vecteezy.com/system/resources/thumbnails/038/281/388/small/ai-generated-fake-banana-plant-house-plant-house-tree-fake-banana-plants-artificial-banana-plant-home-plant-fake-banana-tree-monstera-tree-png.png');
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  height: 490px;
+}
+
+.home-card1 {
+  background-image: url('https://static.vecteezy.com/system/resources/thumbnails/045/965/551/small_2x/philodendron-selloum-large-plant-with-deeply-lobed-green-leaves-in-a-large-woven-basket-planter-png.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 490px;
+  background-position: center center;
+}
+
+.testimonial-banner {
+  background-image: url('https://i.pinimg.com/736x/df/02/b9/df02b991e5e91c99441dc0fa28b0a5aa.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: auto;
+
+}
+
+.plant-banner{
+   background-image: url('../src/assets/plantpage-banner.png');
+   background-size: cover;
+   background-position: center center;
+   position: relative;
+   height: 659px;
+}
+
+.tcarde1{
+  background-image: url('https://static.vecteezy.com/system/resources/thumbnails/055/496/891/small/a-woman-holding-a-potted-plant-free-png.png');
+  height: 190vh;
+ 
+  background-size: contain;  
+  background-repeat: no-repeat;
+  /* background-position: center; */
+}
+
+.about-card1{
+  margin-top: 0px;
+}
+
+.about-card2{
+   margin-top: 0px;
+}
+
+.about-card3{
+  margin-top: 0px;
+}
+
+.about-card4{
+  margin-top: 0px;
+}
+
+.about-card5{
+  margin-top: 0px;
+}
+
+.about-card6{
+  margin-top: 0px;
+}
+
+.blogAnimation-row{
+  /* width: 100%;
+   display: flex; */
+  overflow: hidden;
+}
+
+.blogAnimation-col{
+  width: max-content;
+  display: flex;
+  gap: 16px;
+  animation: scroll 20s linear infinite;
+}
+
+.blogAnimation-col .MuiCard-root {
+  flex-shrink: 0;
+}
+
+@keyframes scroll{
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.blogAnimation-row:hover .blogAnimation-col{
+  animation-play-state: paused;
+}
+
+@media (min-width: 768px){
+  
+   .about-card1{
+  margin-top: -20px;
+  }
+
+  .about-card2{
+  margin-top: -70px;
+  }
+
+  .about-card3{
+    margin-top: -30px;
+  }
+
+   .about-card4{
+  margin-top: -40px;
+  }
+
+   .about-card5{
+  margin-top: -40px;
+  }
+  
+   .about-card6{
+  margin-top: -20px;
+  }
+
+}
+
+.plant-div .p {
+  opacity: 0.1;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.plant-div:hover {
+  transform: translateY(-13px);
+}
+
+.plant-div:hover .p {
+  opacity: 1 !important;
+   transform: translateY(0);
+}
+
+.main-img {
+  background-image: url('https://www.ugaoo.com/cdn/shop/files/A_image_11_37da353e-2353-42a8-af30-66d54a26f8e1.jpg?v=1778241492&width=1000');
+  height: 510px;
+  border-radius: 10px;
+  background-position: top center;
+  box-shadow: 0 30px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* .main-img :hover {
+  transform: translate(0, 0) scale(2)
+} */
+
+@keyframes slideDown {
+ from {
+    transform: translate(-100px, 100px) scale(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+}
+
+.image{
+  border-radius: 10px;
+  opacity: 0.3;
+}
+
+.image-active{
+  border-radius: 10px;
+  transform: translateY(-3px);
+  box-shadow: 0 55px 65px rgba(0, 0, 0, 0.3);
+}
+
+.pnf-banner{
+  background-image: url(./assets/pnf.png);
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+
+.pot-banner{
+   background-image: url('../src/assets/potpage-banner.png');
+   background-size: cover;
+   background-position: center center;
+   position: relative;
+   height: 659px;
+}
