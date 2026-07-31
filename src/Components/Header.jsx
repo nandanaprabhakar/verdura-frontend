@@ -27,7 +27,7 @@ const menuItems = {
     { name: "Medicinal & Aromatic Plants", path: "/medicinal-plants" },
   ],
   "Pots & Planters": [
-    { name: "Plastic Pots", path: "/pots" },
+    { name: "Wooden Pots", path: "/pots" },
     { name: "Ceramic Pots", path: "/ceramic-pots" },
     { name: "Hydroponic Planter", path: "/hydroponic-planter" },
     { name: "Basket Planter", path: "/basket-planter" },

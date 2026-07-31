@@ -11,7 +11,7 @@ import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
 import { Box, Button } from '@mui/material';
-import card from '../assets/plantCard-bg.png'
+import card from '../assets/potCard-bg.png'
 import StarIcon from '@mui/icons-material/Star';
 import { Link } from 'react-router-dom';
 
@@ -45,8 +45,8 @@ function Pots() {
                                 />
                                 <CardContent>
                                     <div className='d-flex justify-content-between py-2'>
-                                        <p className='p' style={{ color: '#DAF1DE' }}>Peace Lily Plant</p>
-                                        <p className='p' style={{ color: '#DAF1DE' }}>₹ 200</p>
+                                        <p className='p' style={{ color: '#051F20' }}>Peace Lily Plant</p>
+                                        <p className='p' style={{ color: '#051F20' }}>₹ 200</p>
                                     </div>
                                 </CardContent>
                                 <CardActions disableSpacing>
