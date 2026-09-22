@@ -23,11 +23,11 @@ function App() {
       <Route path='/register' element={<Auth register/>}/>
       <Route path='/blogs' element={<Blogs/>}/>
       <Route path='/plants' element={<Plants/>}/>
-      <Route path='/plant-details' element={<PlantDetails/>}/>
+      <Route path='/plant-details/:id' element={<PlantDetails/>}/>
       <Route path='/pots' element={<Pots/>}/>
-      <Route path='/pot-details' element={<PotDetails/>}/>
+      <Route path='/pot-details/:id' element={<PotDetails/>}/>
       <Route path='/blogsa' element={<BlogAnimation/>}/>
-      <Route path='/p' element={<Profile/>}/>
+      <Route path='/profile' element={<Profile/>}/>
       <Route path='/*' element={<PageNotFound/>}/>
      </Routes>
     </>

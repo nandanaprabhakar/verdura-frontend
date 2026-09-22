@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import {
   AppBar,
   Box,
@@ -18,16 +18,21 @@ import { Link } from 'react-router-dom';
 import Popover from '@mui/material/Popover';
 import { Label } from '@mui/icons-material';
 import Auth from './Auth';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 const menuItems = {
   Plants: [
-    { name: "Indoor Plants", path: "/plants" },
-    { name: "Flowering Plants", path: "/flowering-plants" },
-    { name: "Hanging Plants", path: "/hanging-plants" },
-    { name: "Medicinal & Aromatic Plants", path: "/medicinal-plants" },
+    { name: "Indoor Plants", path: "/plants", type: "indoor plant" },
+    { name: "Flowering Plants", path: "/plants", type: "flowering plant" },
+    { name: "Hanging Plants", path: "/plants", type: "hanging plant" },
+    { name: "Medicinal & Aromatic Plants", path: "/plants", type: "medicinal & aromatic plant" },
   ],
   "Pots & Planters": [
-    { name: "Wooden Pots", path: "/pots" },
+    { name: "Wooden Pots", path: "/pots", type: "wooden pot" },
     { name: "Ceramic Pots", path: "/ceramic-pots" },
     { name: "Hydroponic Planter", path: "/hydroponic-planter" },
     { name: "Basket Planter", path: "/basket-planter" },
@@ -43,6 +48,30 @@ const menuItems = {
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Header({ color = '#DAF1DE' }) {
+
+
+  const [token, setToken] = useState('');
+
+  useEffect(() => {
+    setToken(sessionStorage.getItem('token'));
+  })
+
+const [open, setOpen] = React.useState(false);
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+    useEffect(() => {
+        if (open) {
+            const timer = setTimeout(() => {
+                setOpen(false);
+            }, 1000);
+
+            return () => clearTimeout(timer);
+        }
+    }, [open]);
 
   const [mobileMenu, setMobileMenu] = useState('');
 
@@ -70,7 +99,10 @@ function Header({ color = '#DAF1DE' }) {
     setSelectedMenu('');
   };
 
-
+const handleLogOut = () => {
+  sessionStorage.removeItem('token');
+  setAnchorElDropdown(null);
+}
 
   return (
     <AppBar
@@ -168,9 +200,14 @@ function Header({ color = '#DAF1DE' }) {
                   key={page}
                   sx={{ color }}
                   onClick={(e) => {
+                    if(token){
                     if (menuItems[page].length > 0) {
                       handleOpenDropdown(e, page);
                     }
+                  }
+                  else{
+                    handleClickOpen()
+                  }
                   }}>
                   {page}
                 </Button>
@@ -192,7 +229,7 @@ function Header({ color = '#DAF1DE' }) {
                       key={item}
                       key={item.path}
                       component={Link}
-                      to={item.path}
+                      to={`${item.path}?type=${encodeURIComponent(item.type)}`}
                       onClick={handleCloseDropdown}
                     >
                       {item.name}
@@ -228,44 +265,47 @@ function Header({ color = '#DAF1DE' }) {
           </Box>
 
           {/* Right Side */}
-          <Box
-            sx={{
-              flex: 1,
-              display: 'flex',
-              justifyContent: 'flex-end'
-            }}
-          >
-            <IconButton onClick={handleOpenUserMenu}>
-              {/* <IconButton onClick={handleClick}>*/}
-              <PersonOutlineOutlinedIcon sx={{ color: '#DAF1DE', fontSize: '40px' }} />
-            </IconButton>
-
-            <Menu
-              anchorEl={anchorElUser}
-              open={Boolean(anchorElUser)}
-              onClose={() => setAnchorElUser(null)}
-              slotProps={{
-                paper: {
-                  sx: { width: 'auto', color: '#DAF1DE', borderRadius: 1, background: 'rgba(255, 255, 255, 0.08)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(15px)' }
-                }
-              }}
-            >
-              {settings.map((setting) => (
-                <MenuItem
-                  key={setting}
-                  onClick={() => setAnchorElUser(null)}
-                  component={Link} to={setting == 'Profile' ? '/p' : ''}
-                >
-                  {setting}
-                </MenuItem>
-              ))}
-            </Menu>
-
-
-            <Auth/>
+          <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
+            {token ? (<>
+              <IconButton onClick={handleOpenUserMenu}>
+                <PersonOutlineOutlinedIcon sx={{ color, fontSize: '40px' }} />
+              </IconButton>
+              <Menu
+                anchorEl={anchorElUser}
+                open={Boolean(anchorElUser)}
+                onClose={() => setAnchorElUser(null)}
+                slotProps={{
+                  paper: {
+                    sx: { width: 'auto', color, borderRadius: 1, background: 'rgba(255, 255, 255, 0.08)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(15px)' }
+                  }
+                }}
+              >
+                {settings.map((setting) => (
+                  <MenuItem key={setting} onClick={() => setting == 'Logout' ? handleLogOut() : setAnchorElUser(null)} component={Link} to={setting == 'Profile' ? '/profile' : 'Logout' ? '/home' : ''}>
+                    {setting}
+                  </MenuItem>
+                ))}
+              </Menu>
+            </>) : <Auth />}
           </Box>
         </Toolbar>
       </Container>
+      <Dialog open={open} onClose={handleClose} BackdropProps={{ sx: { backgroundColor: 'rgba(5, 31, 32, 0.35)', backdropFilter: 'blur(3px)' } }}
+                      PaperProps={{ sx: { width: { xs: '90%', sm: '590px' }, borderRadius: '8px', padding: '12px', background: 'rgba(5, 31, 32, 0.55)', backdropFilter: 'blur(15px)', WebkitBackdropFilter: 'blur(15px)', border: '1px solid rgba(142, 182, 155, 0.4)', boxShadow: '0 15px 50px rgba(0, 0, 0, 0.4)' } }}>
+                      <DialogTitle id="login-dialog-title" sx={{ textAlign: 'center', color: '#051F20', fontFamily: '"Cormorant Garamond", serif', fontSize: '32px', fontWeight: 600, pb: 1 }}>
+                          Welcome to Verdura
+                      </DialogTitle>
+                      <DialogContent sx={{ textAlign: 'center', px: 3 }}>
+                          <Box sx={{ width: '55px', height: '55px', borderRadius: '50%', backgroundColor: '#DAF1DE', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 15px', fontSize: '25px' }}>
+                              🌿
+                          </Box>
+                          <DialogContentText
+                              sx={{ color: '#235347', fontFamily: '"Inter", sans-serif', fontSize: '14px', lineHeight: 1.7, }}>
+                              Please login to your account to explore our
+                              collection of beautiful plants and botanical essentials.
+                          </DialogContentText>
+                      </DialogContent>
+                  </Dialog>
     </AppBar>
   );
 }

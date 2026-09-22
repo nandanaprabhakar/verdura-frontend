@@ -47,7 +47,7 @@ p {
 }
 
 .home-card1 {
-  background-image: url('https://static.vecteezy.com/system/resources/thumbnails/045/965/551/small_2x/philodendron-selloum-large-plant-with-deeply-lobed-green-leaves-in-a-large-woven-basket-planter-png.png');
+  /* background-image: url('https://static.vecteezy.com/system/resources/thumbnails/045/965/551/small_2x/philodendron-selloum-large-plant-with-deeply-lobed-green-leaves-in-a-large-woven-basket-planter-png.png'); */
   background-repeat: no-repeat;
   background-size: contain;
   height: 490px;
@@ -225,4 +225,75 @@ p {
    background-position: center center;
    position: relative;
    height: 659px;
+}
+
+.pot-card {
+  position: relative;
+}
+.pot-div{
+  position: absolute;
+  bottom: -10px;
+  left: 15px;
+  right: 15px;
+}
+
+.pot-card:hover {
+  transform: translateY(-13px);
+}
+
+.pot-card .p {
+  opacity: 0.5;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.pot-card:hover .p {
+  opacity: 1 !important;
+   transform: translateY(0);
+}
+
+.review-card {
+  transition: transform 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.review-card:hover {
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+.review-text1 {
+  display: block;
+  max-height: 200px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.review-text2 {
+   display: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.review-rating {
+ display: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.review-card:hover .review-rating {
+  display: block;
+  max-height: 200px;
+}
+
+.review-card:hover .review-text1{
+  display: none;
+}
+.review-card:hover .review-text2{
+  display: block;
+  max-height: 200px;
+  
 }
